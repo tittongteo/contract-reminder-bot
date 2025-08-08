@@ -1,13 +1,14 @@
-name: Contract Reminder
+name: Contract Reminder Bot
 
 on:
+  workflow_dispatch:  # Cho phép bấm chạy tay trên GitHub
   schedule:
-    - cron: "0 1 * * *" # 1:00 UTC mỗi ngày (~8:00 sáng VN)
-  workflow_dispatch: # Cho phép chạy thủ công
+    - cron: "0 2 * * *"  # Chạy hàng ngày lúc 09:00 sáng giờ Việt Nam (UTC+7)
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,6 +23,6 @@ jobs:
 
       - name: Run bot
         env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          CHAT_ID: ${{ secrets.CHAT_ID }}
+          TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python bot.py
