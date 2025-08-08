@@ -6,7 +6,7 @@ TOKEN = "8486225607:AAFpxAhRU7vtGqYcHANN-R9HsaBLqZyozgg"
 CHAT_ID = "-4943299045"
 
 def send_telegram(message):
-    url = f"https://api.telegram.org/bot8486225607:AAFpxAhRU7vtGqYcHANN-R9HsaBLqZyozgg}/sendMessage"
+    url = f"https://api.telegram.org/bot8486225607:AAFpxAhRU7vtGqYcHANN-R9HsaBLqZyozgg/sendMessage"
     requests.post(url, data={"-4943299045": CHAT_ID, "text": message})
 
 def check_contracts():
@@ -21,3 +21,4 @@ def check_contracts():
 
 if __name__ == "__main__":
     check_contracts()
+
