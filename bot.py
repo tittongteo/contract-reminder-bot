@@ -2,12 +2,19 @@ import csv
 import requests
 from datetime import datetime
 
+# Thông tin Telegram bot
 TOKEN = "8486225607:AAFpxAhRU7vtGqYcHANN-R9HsaBLqZyozgg"
 CHAT_ID = "-4943299045"
 
 def send_telegram(message):
-    url = f"https://api.telegram.org/bot8486225607:AAFpxAhRU7vtGqYcHANN-R9HsaBLqZyozgg/sendMessage"
-    requests.post(url, data={"-4943299045": CHAT_ID, "text": message})
+    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    payload = {
+        "chat_id": CHAT_ID,
+        "text": message
+    }
+    response = requests.post(url, data=payload)
+    if response.status_code != 200:
+        print(f"Lỗi gửi tin: {response.text}")
 
 def check_contracts():
     today = datetime.now().date()
@@ -21,4 +28,3 @@ def check_contracts():
 
 if __name__ == "__main__":
     check_contracts()
-
